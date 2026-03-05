@@ -60,12 +60,10 @@ public class BuildInputStrategy : IPlayerInputStrategy, IPhoneActions
         {
             if (deltaChange.x > 0)
             {
-                Debug.Log("Right");
                 RightPerformed?.Invoke();
             }
             else
             {
-                Debug.Log("Left");
                 LeftPerformed?.Invoke();
             }
         }
@@ -73,12 +71,10 @@ public class BuildInputStrategy : IPlayerInputStrategy, IPhoneActions
         {
             if (deltaChange.y > 0)
             {
-                Debug.Log("Up");
                 JumpPerjormed?.Invoke();
             }
             else
             {
-                Debug.Log("Down");
                 SlidePerformed?.Invoke();
             }
         }

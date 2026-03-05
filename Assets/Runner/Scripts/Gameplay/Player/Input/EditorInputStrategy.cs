@@ -31,21 +31,33 @@ public class EditorInputStrategy : IPlayerInputStrategy, IEditorActions
 
     public void OnLeft(InputAction.CallbackContext context)
     {
-        LeftPerformed?.Invoke();
+        if (context.performed)
+        {
+            LeftPerformed?.Invoke();
+        }
     }
 
     public void OnRight(InputAction.CallbackContext context)
     {
-        RightPerformed?.Invoke();
+        if (context.performed)
+        {
+            RightPerformed?.Invoke();
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        JumpPerjormed?.Invoke();
+        if (context.performed)
+        {
+            JumpPerjormed?.Invoke();
+        }
     }
 
     public void OnSlide(InputAction.CallbackContext context)
     {
-        SlidePerformed?.Invoke();
+        if (context.performed)
+        {
+            SlidePerformed?.Invoke();
+        }
     }
 }

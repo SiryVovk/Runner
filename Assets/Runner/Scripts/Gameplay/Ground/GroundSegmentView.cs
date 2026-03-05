@@ -2,14 +2,9 @@ using UnityEngine;
 
 public class GroundSegmentView : MonoBehaviour
 {
-    public float Length { get; private set; }
+    public float Length => length;
 
-    [SerializeField] private Renderer _groundRenderer;
-
-    private void Awake()
-    {
-        Length = _groundRenderer.bounds.size.z;
-    }
+    [SerializeField] private float length = 28f;
 
     public void Move(float deltaZMove)
     {
