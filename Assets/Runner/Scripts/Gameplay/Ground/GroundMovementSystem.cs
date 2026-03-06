@@ -5,7 +5,8 @@ public class GroundMovementSystem : MonoBehaviour
 {
     [SerializeField] private List<GroundSegmentView> _groundSegments;
     [SerializeField] private GroundSpeedSystem _groundSpeedSystem;
-    [SerializeField] private Transform _playerTransform;
+    [SerializeField] private ObstaclesSpawnSystem _obstaclesSpawnSystem;
+    [SerializeField] private float zTeleportPosition = -15;
 
     private const int DirectionMultiplyer = -1;
 
@@ -30,13 +31,14 @@ public class GroundMovementSystem : MonoBehaviour
     {
         GroundSegmentView firstGroundSegment = _groundSegments[0];
 
-        if(firstGroundSegment.transform.position.z + firstGroundSegment.Length < _playerTransform.position.z)
+        if(firstGroundSegment.transform.position.z < zTeleportPosition)
         {
             GroundSegmentView lastSegment = _groundSegments[_groundSegments.Count - 1];
 
             Vector3 newPosition = new Vector3(0f,0f,lastSegment.transform.position.z + lastSegment.Length);
             firstGroundSegment.SetPosition(newPosition);
 
+            _obstaclesSpawnSystem.SpawnObsticles(firstGroundSegment);
             _groundSegments.RemoveAt(0);
             _groundSegments.Add(firstGroundSegment);
         }

@@ -28,19 +28,24 @@ public class PlayerStateMachineView : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputSystem.LeftPerformed += () => _currentState.OnLeft(this);
-        _inputSystem.RightPerformed += () => _currentState.OnRight(this);
-        _inputSystem.JumpPerformed += () => _currentState.OnJump(this);
-        _inputSystem.SlidePerformed += () => _currentState.OnSlide(this);
+        _inputSystem.LeftPerformed += OnLeft;
+        _inputSystem.RightPerformed += OnRight;
+        _inputSystem.JumpPerformed += OnJump;
+        _inputSystem.SlidePerformed += OnSlide;
     }
 
     private void OnDisable()
     {
-        _inputSystem.LeftPerformed -= () => _currentState.OnLeft(this);
-        _inputSystem.RightPerformed -= () => _currentState.OnRight(this);
-        _inputSystem.JumpPerformed -= () => _currentState.OnJump(this);
-        _inputSystem.SlidePerformed -= () => _currentState.OnSlide(this);
+        _inputSystem.LeftPerformed -= OnLeft;
+        _inputSystem.RightPerformed -= OnRight;
+        _inputSystem.JumpPerformed -= OnJump;
+        _inputSystem.SlidePerformed -= OnSlide;
     }
+
+    private void OnLeft() => _currentState.OnLeft(this);
+    private void OnRight() => _currentState.OnRight(this);
+    private void OnJump() => _currentState.OnJump(this);
+    private void OnSlide() => _currentState.OnSlide(this);
 
     private void Update()
     {

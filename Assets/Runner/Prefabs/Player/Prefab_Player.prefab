@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 4502683360046831091}
   - component: {fileID: 2635685924589913627}
   - component: {fileID: 3824721726247597306}
+  - component: {fileID: 6744588187415723791}
   m_Layer: 0
   m_Name: Prefab_Player
   m_TagString: Untagged
@@ -427,9 +428,9 @@ MonoBehaviour:
   - {fileID: 0}
   _laneSystem: {fileID: 0}
   _jumpForce: 5
-  _slideTime: 5
-  _normalCollider: {fileID: 0}
-  _slidingCollider: {fileID: 0}
+  _slideTime: 0.25
+  _normalCollider: {fileID: 4559359591912721584}
+  _slidingCollider: {fileID: 1805790799312003552}
 --- !u!114 &3824721726247597306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +446,18 @@ MonoBehaviour:
   _inputSystem: {fileID: 4502683360046831091}
   _laneSystem: {fileID: 0}
   _movementSystem: {fileID: 2635685924589913627}
+--- !u!114 &6744588187415723791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891878519179695191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aefc5514571da4e9f8e89e9d74ef96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerColliisionSystem
 --- !u!1 &1093458896924433878
 GameObject:
   m_ObjectHideFlags: 0

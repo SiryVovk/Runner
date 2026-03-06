@@ -1,10 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundSegmentView : MonoBehaviour
 {
-    public float Length => length;
+    public float Length => _length;
+    public List<ObstacleHolder> Obstacles => _obstacles;
+    public SpawnRowStruct[] Rows => _spawnPoints;
 
-    [SerializeField] private float length = 28f;
+    [SerializeField] private float _length = 28f;
+    [SerializeField] private SpawnRowStruct[] _spawnPoints;
+
+    private List<ObstacleHolder> _obstacles = new List<ObstacleHolder>();
 
     public void Move(float deltaZMove)
     {
@@ -16,5 +22,15 @@ public class GroundSegmentView : MonoBehaviour
     public void SetPosition(Vector3 newPosition)
     {
         transform.position = newPosition;
+    }
+
+    public void AddToList(ObstacleHolder obstacleHolder)
+    {
+        _obstacles.Add(obstacleHolder);
+    }
+
+    public void ClearList()
+    {
+        _obstacles.Clear();
     }
 }
