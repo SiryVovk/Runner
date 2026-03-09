@@ -20,4 +20,9 @@ public class ScoreSystem : MonoBehaviour
 
         _groundSpeed = _groundSpeedSystem.GroundModel.CurrentSpeed;
     }
+
+    public int GetScoreToInt()
+    {
+        return Mathf.FloorToInt(CurrentScore);
+    }
 }

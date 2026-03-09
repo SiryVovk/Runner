@@ -29,11 +29,12 @@ public class GameStateSystem : MonoBehaviour
 
     public void RevivePlayer()
     {
+        OnRevive?.Invoke();
+
         CurrentState = EGameState.Playing;
 
         Time.timeScale = 1f;
 
-        OnRevive?.Invoke();
     }
 
     public void StartGame()

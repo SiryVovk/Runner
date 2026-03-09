@@ -4,6 +4,7 @@ public class PlayerStateMachineView : MonoBehaviour
 {
     public LaneSystem LaneSystem => _laneSystem;
     public MovementSystem MovementSystem => _movementSystem;
+    public PlayerColliisionSystem PlayerColliisionSystem => _playerColliisionSystem;
     public RunningState RunningState => _runningState;
     public ChangeLaneState ChangeLaneState => _changeLaneState;
     public JumpState JumpState => _jumpState;
@@ -12,6 +13,7 @@ public class PlayerStateMachineView : MonoBehaviour
     [SerializeField] private PlayerInputSystem _inputSystem;
     [SerializeField] private LaneSystem _laneSystem;
     [SerializeField] private MovementSystem _movementSystem;
+    [SerializeField] private PlayerColliisionSystem _playerColliisionSystem;
 
     private PlayerState _currentState;
 

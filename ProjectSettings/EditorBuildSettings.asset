@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Runner/Scenes/Authorisation.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Runner/Scenes/MainMenu.unity
-    guid: e23d56421d14c9d499875c4fa22373be
-  - enabled: 1
     path: Assets/Runner/Scenes/Game.unity
     guid: 4c7cee6e7a9879742b819ec87c580761
   m_configObjects:

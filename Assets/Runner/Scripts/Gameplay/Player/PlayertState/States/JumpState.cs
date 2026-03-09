@@ -10,12 +10,11 @@ public class JumpState : PlayerState
     public override void EnterState(PlayerStateMachineView playerStateMachineView)
     {
         _laneChangedInAir = false;
-        playerStateMachineView.MovementSystem.Jump();
     }
 
     public override void UpdateState(PlayerStateMachineView playerStateMachineView)
     {
-        if (playerStateMachineView.MovementSystem.IsGrounded && playerStateMachineView.MovementSystem.IsFalling())
+        if (!playerStateMachineView.PlayerColliisionSystem.IsJumping)
         {
             playerStateMachineView.SwitchState(playerStateMachineView.RunningState);
         }

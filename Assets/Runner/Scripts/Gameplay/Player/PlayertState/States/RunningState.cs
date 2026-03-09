@@ -23,7 +23,7 @@ public class RunningState : PlayerState
 
     public override void OnJump(PlayerStateMachineView playerStateMachineView)
     {
-        if (!playerStateMachineView.MovementSystem.IsGrounded)
+        if (playerStateMachineView.PlayerColliisionSystem.IsJumping)
         {
             return;
         }
@@ -33,7 +33,7 @@ public class RunningState : PlayerState
 
     public override void OnSlide(PlayerStateMachineView playerStateMachineView)
     {
-        if(!playerStateMachineView.MovementSystem.IsGrounded)
+        if(playerStateMachineView.PlayerColliisionSystem.IsJumping)
         {
             return;
         }
