@@ -21,7 +21,7 @@ public class PlayerInputSystem : MonoBehaviour
         _inputStrategy.LeftPerformed += () => LeftPerformed?.Invoke();
         _inputStrategy.RightPerformed += () => RightPerformed?.Invoke();
         _inputStrategy.SlidePerformed += () => SlidePerformed?.Invoke();
-        _inputStrategy.JumpPerjormed += () => JumpPerformed?.Invoke();
+        _inputStrategy.JumpPerformed += () => JumpPerformed?.Invoke();
     }
 
     private void OnEnable()

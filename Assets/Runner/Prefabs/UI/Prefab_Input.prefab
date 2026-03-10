@@ -34,10 +34,10 @@ RectTransform:
   - {fileID: 3533272301200819439}
   m_Father: {fileID: 2969097773224175734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 213, y: -13}
-  m_SizeDelta: {x: 432.13, y: 77.7167}
+  m_AnchorMin: {x: 0.5, y: 0.25976586}
+  m_AnchorMax: {x: 1, y: 0.5782976}
+  m_AnchoredPosition: {x: 0, y: 1.5}
+  m_SizeDelta: {x: 0, y: -5.197296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3666968857776907428
 CanvasRenderer:
@@ -349,7 +349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.4274292, y: -0.000289917}
+  m_AnchoredPosition: {x: 2.4274292, y: -0.00030517578}
   m_SizeDelta: {x: 107.2186, y: -0.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8437831193840377631
@@ -422,10 +422,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2969097773224175734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.051759038, y: 0}
-  m_AnchorMax: {x: 0.3776482, y: 0.9095756}
-  m_AnchoredPosition: {x: -2.6465454, y: 2.158905}
-  m_SizeDelta: {x: 2.6511002, y: 3.8577003}
+  m_AnchorMin: {x: 0.051759038, y: 0.25976586}
+  m_AnchorMax: {x: 0.4868168, y: 0.5782976}
+  m_AnchoredPosition: {x: 0, y: 1.4986877}
+  m_SizeDelta: {x: 0.000030518, y: -5.1947}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2947510423877380915
 CanvasRenderer:
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Email:'
+  m_text: 'Password:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1646c70a155bda245babfad4d4a41dd1, type: 2}
   m_sharedMaterial: {fileID: -1099408232320668385, guid: 1646c70a155bda245babfad4d4a41dd1, type: 2}
@@ -482,11 +482,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84
+  m_fontSize: 62
   m_fontSizeBase: 84
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 62
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -81.7169, w: 0}
+  m_margin: {x: 0.71800905, y: 78.80545, z: 0.9259796, w: 79.53834}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

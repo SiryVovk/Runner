@@ -6,7 +6,6 @@ public class PlayerAnimationSystem : MonoBehaviour
     public event Action OnExitJump;
     public event Action OnExitSlide;
 
-    [SerializeField] private PlayerInputSystem _inputSystem;
     [SerializeField] private Animator _animator;
 
     private void Start()
@@ -14,33 +13,21 @@ public class PlayerAnimationSystem : MonoBehaviour
         _animator.SetBool("Running", true);
     }
 
-    private void OnEnable()
-    {
-        _inputSystem.JumpPerformed += Jump;
-        _inputSystem.SlidePerformed += Slide;
-    }
 
-    private void OnDisable()
-    {
-        _inputSystem.JumpPerformed -= Jump;
-        _inputSystem.SlidePerformed -= Slide;
-    }
-
-    private void Jump()
+    public void TriggerJump()
     {
         _animator.SetTrigger("Jump");
     }
-
-    private void Slide()
+    public void TriggerSlide()
     {
         _animator.SetTrigger("Slide");
     }
+
 
     private void ExitJump()
     {
         OnExitJump?.Invoke();
     }
-
     private void ExitSlide()
     {
         OnExitSlide?.Invoke();

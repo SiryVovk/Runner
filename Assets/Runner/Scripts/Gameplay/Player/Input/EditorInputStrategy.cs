@@ -9,7 +9,7 @@ public class EditorInputStrategy : IPlayerInputStrategy, IEditorActions
     public event Action LeftPerformed;
     public event Action RightPerformed;
     public event Action SlidePerformed;
-    public event Action JumpPerjormed;
+    public event Action JumpPerformed;
 
     private RunnerInputAction _inputAction;
 
@@ -49,7 +49,7 @@ public class EditorInputStrategy : IPlayerInputStrategy, IEditorActions
     {
         if (context.performed)
         {
-            JumpPerjormed?.Invoke();
+            JumpPerformed?.Invoke();
         }
     }
 

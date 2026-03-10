@@ -2,50 +2,35 @@ using UnityEngine;
 
 public class RunningState : PlayerState
 {
-    private const int LeftLaneChange = -1;
-    private const int RightLaneChange = 1;
+    public override void EnterState(PlayerStateMachineView view) { }
+    public override void UpdateState(PlayerStateMachineView view) { }
+    public override void ExitState(PlayerStateMachineView view) { }
 
-    public override void EnterState(PlayerStateMachineView playerStateMachineView) { }
-
-    public override void UpdateState(PlayerStateMachineView playerStateMachineView) { }
-
-    public override void ExitState(PlayerStateMachineView playerStateMachineView) { }
-
-    public override void OnLeft(PlayerStateMachineView playerStateMachineView)
+    public override void OnLeft(PlayerStateMachineView view)
     {
-        TryChangeLane(playerStateMachineView, LeftLaneChange);
+        TryChangeLane(view, LeftLaneChange);
     }
 
-    public override void OnRight(PlayerStateMachineView playerStateMachineView)
+    public override void OnRight(PlayerStateMachineView view)
     {
-        TryChangeLane(playerStateMachineView, RightLaneChange);
+        TryChangeLane(view, RightLaneChange);
     }
 
-    public override void OnJump(PlayerStateMachineView playerStateMachineView)
+    public override void OnJump(PlayerStateMachineView view)
     {
-        if (playerStateMachineView.PlayerColliisionSystem.IsJumping)
+        view.SwitchState(view.JumpState);
+    }
+
+    public override void OnSlide(PlayerStateMachineView view)
+    {
+        view.SwitchState(view.SlideState);
+    }
+
+    private void TryChangeLane(PlayerStateMachineView view, int direction)
+    {
+        if (view.LaneSystem.TryMove(direction))
         {
-            return;
-        }
-
-        playerStateMachineView.SwitchState(playerStateMachineView.JumpState);
-    }
-
-    public override void OnSlide(PlayerStateMachineView playerStateMachineView)
-    {
-        if(playerStateMachineView.PlayerColliisionSystem.IsJumping)
-        {
-            return;
-        }
-
-        playerStateMachineView.SwitchState(playerStateMachineView.SlideState);
-    }
-
-    private void TryChangeLane(PlayerStateMachineView playerStateMachineView, int direction)
-    {
-        if (playerStateMachineView.LaneSystem.TryMove(direction))
-        {
-            playerStateMachineView.SwitchState(playerStateMachineView.ChangeLaneState);
+            view.SwitchState(view.ChangeLaneState);
         }
     }
 }

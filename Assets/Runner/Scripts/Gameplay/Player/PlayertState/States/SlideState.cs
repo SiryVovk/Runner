@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class SlideState : PlayerState
 {
-    public override void EnterState(PlayerStateMachineView playerStateMachinView)
+    public override void EnterState(PlayerStateMachineView view)
     {
+        view.PlayerColliisionSystem.SetSliding(true);
+        view.AnimationSystem.TriggerSlide();
     }
 
-    public override void ExitState(PlayerStateMachineView playerStateMachinView)
+    public override void ExitState(PlayerStateMachineView view)
     {
-
+        view.PlayerColliisionSystem.SetSliding(false);
     }
 
-    public override void UpdateState(PlayerStateMachineView playerStateMachinView)
+    public override void UpdateState(PlayerStateMachineView view) { }
+
+    public override void OnAnimationFinished(PlayerStateMachineView view)
     {
-        if(!playerStateMachinView.PlayerColliisionSystem.IsSliding)
-        {
-            playerStateMachinView.SwitchState(playerStateMachinView.RunningState);
-        }
+        view.SwitchState(view.RunningState);
     }
 }

@@ -3,55 +3,46 @@ using UnityEngine;
 
 public class PlayerColliisionSystem : MonoBehaviour
 {
-    public bool IsSliding {  get; private set; }
+    public bool IsSliding { get; private set; }
     public bool IsJumping { get; private set; }
 
-    [Header ("References")]
+    [Header("References")]
     [SerializeField] private GameStateSystem _gameStateSystem;
-    [SerializeField] private PlayerAnimationSystem _playerAnimationSystem;
-    [SerializeField] private PlayerInputSystem _playerInputSystem;
-    [SerializeField] private Collider _playerCollider;
 
-    [Header("Setings")]
+    [Header("Settings")]
     [SerializeField] private float _invincibilityTime = 2f;
 
     private bool _isInvincible = false;
-    private bool _isIgnoringCollision = false;
 
-    private void OnEnable()
-    {
-        _gameStateSystem.OnRevive += Reviveed;
-        _playerInputSystem.JumpPerformed += Jump;
-        _playerInputSystem.SlidePerformed += Slide;
-        _playerAnimationSystem.OnExitJump += StopJump;
-        _playerAnimationSystem.OnExitSlide += StopSlide;
-    }
-
-    private void OnDisable()
-    {
-        _gameStateSystem .OnRevive -= Reviveed;
-        _playerInputSystem.JumpPerformed -= Jump;
-        _playerInputSystem.SlidePerformed -= Slide;
-        _playerAnimationSystem.OnExitJump -= StopJump;
-        _playerAnimationSystem.OnExitSlide -= StopSlide;
-    }
+    private void OnEnable() => _gameStateSystem.OnRevive += Reviveed;
+    private void OnDisable() => _gameStateSystem.OnRevive -= Reviveed;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!enabled)
-        {
-            return;
-        }
+        if (!enabled || _isInvincible) return;
 
-        if (_isIgnoringCollision || _isInvincible)
+        if (collision.gameObject.TryGetComponent(out ObstacleHolder obstacle))
         {
-            return;
-        }
+            bool survives = obstacle.ObstacleType switch
+            {
+                EObstacleType.Wall => false,
+                EObstacleType.Jump => IsJumping,
+                EObstacleType.Slide => IsSliding,
+                _ => false
+            };
 
-        if(collision.gameObject.TryGetComponent(out ObstacleHolder obstacle))
-        {
-            _gameStateSystem.KillPlayer();
+            if (!survives) _gameStateSystem.KillPlayer();
         }
+    }
+
+    public void SetJumping(bool state)
+    {
+        IsJumping = state;
+    }
+
+    public void SetSliding(bool state)
+    {
+        IsSliding = state;
     }
 
     private void Reviveed()
@@ -62,41 +53,7 @@ public class PlayerColliisionSystem : MonoBehaviour
 
     private IEnumerator InvincibilytyRoutine()
     {
-
         yield return new WaitForSeconds(_invincibilityTime);
-
         _isInvincible = false;
-    }
-
-    private void Jump()
-    {
-        DisableCollision();
-    }
-
-    private void StopJump()
-    {
-        EnableColision();
-    }
-
-    private void Slide()
-    {
-        DisableCollision();
-    }
-
-    private void StopSlide()
-    {
-        EnableColision();
-    }
-
-    private void DisableCollision()
-    {
-        _playerCollider.isTrigger = true;
-        _isIgnoringCollision = true;
-    }
-
-    private void EnableColision()
-    {
-        _playerCollider.isTrigger = false;
-        _isIgnoringCollision = false;
     }
 }

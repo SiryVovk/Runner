@@ -46,14 +46,14 @@ public class ObstaclesSpawnSystem : MonoBehaviour
     {
         EObstacleType type = (EObstacleType)Random.Range(0, System.Enum.GetValues(typeof(EObstacleType)).Length);
 
-        if (type == EObstacleType.Lane )
+        if (type == EObstacleType.Wall )
         {
             if (laneCount >= MaxLanes)
             {
                 do
                 {
                     type = (EObstacleType)Random.Range(0, System.Enum.GetValues(typeof(EObstacleType)).Length);
-                }while(type == EObstacleType.Lane);
+                }while(type == EObstacleType.Wall);
             }
             else
             {

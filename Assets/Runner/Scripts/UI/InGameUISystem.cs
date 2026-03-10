@@ -18,7 +18,7 @@ public class InGameUISystem : MonoBehaviour
 
     [SerializeField] private Button _continueButton;
 
-    private void OnEnable()
+    private void Start()
     {
         _gameStateSystem.OnDeath += ShowDeathScreen;
         AdSystemSinglton.Instance.OnRewardGranted += ContinueAfterAd;
@@ -76,5 +76,11 @@ public class InGameUISystem : MonoBehaviour
     {
         _gameStartScreen.SetActive(false);
         _leaderBoardScreen.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        _leaderBoardScreen.SetActive(false);
+        _gameStartScreen.SetActive(true);
     }
 }

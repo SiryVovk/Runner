@@ -8,12 +8,12 @@ public class BuildInputStrategy : IPlayerInputStrategy, IPhoneActions
     public event Action LeftPerformed;
     public event Action RightPerformed;
     public event Action SlidePerformed;
-    public event Action JumpPerjormed;
+    public event Action JumpPerformed;
 
     private RunnerInputAction _inputAction;
 
-    private Vector2 _startPostion;
-    private Vector2 _endPostion;
+    private Vector2 _startPosition;
+    private Vector2 _endPosition;
 
     private const float SwipeThreshold = 25f;
 
@@ -37,19 +37,19 @@ public class BuildInputStrategy : IPlayerInputStrategy, IPhoneActions
     {
         if(context.started)
         {
-            _startPostion = _inputAction.Phone.TouchPosition.ReadValue<Vector2>();
+            _startPosition = _inputAction.Phone.TouchPosition.ReadValue<Vector2>();
         }
 
         if(context.canceled)
         {
-            _endPostion = _inputAction.Phone.TouchPosition.ReadValue<Vector2>();
+            _endPosition = _inputAction.Phone.TouchPosition.ReadValue<Vector2>();
             Swipe();
         }
     }
 
     private void Swipe()
     {
-        Vector2 deltaChange = _endPostion - _startPostion;
+        Vector2 deltaChange = _endPosition - _startPosition;
 
         if (Mathf.Abs(deltaChange.x) < SwipeThreshold && Mathf.Abs(deltaChange.y) < SwipeThreshold)
         {
@@ -71,7 +71,7 @@ public class BuildInputStrategy : IPlayerInputStrategy, IPhoneActions
         {
             if (deltaChange.y > 0)
             {
-                JumpPerjormed?.Invoke();
+                JumpPerformed?.Invoke();
             }
             else
             {

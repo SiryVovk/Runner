@@ -13,7 +13,7 @@ public class ObstacleFactory : MonoBehaviour
     {
         _pools = new Dictionary<EObstacleType, ObstacleObjectPoll>
         {
-            {EObstacleType.Lane, _lanePool},
+            {EObstacleType.Wall, _lanePool},
             {EObstacleType.Jump, _jumpPool},
             {EObstacleType.Slide, _slidePool}
         };

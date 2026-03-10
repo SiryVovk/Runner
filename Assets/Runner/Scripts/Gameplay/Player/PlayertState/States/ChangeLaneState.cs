@@ -2,21 +2,14 @@ using UnityEngine;
 
 public class ChangeLaneState : PlayerState
 {
-    public override void EnterState(PlayerStateMachineView playerStateMachinView)
+    public override void EnterState(PlayerStateMachineView view) { }
+    public override void ExitState(PlayerStateMachineView view) { }
+
+    public override void UpdateState(PlayerStateMachineView view)
     {
-
-    }
-
-    public override void ExitState(PlayerStateMachineView playerStateMachinView)
-    {
-
-    }
-
-    public override void UpdateState(PlayerStateMachineView playerStateMachinView)
-    {
-        if (playerStateMachinView.MovementSystem.IsCenteredOnLane())
+        if (view.MovementSystem.IsCenteredOnLane())
         {
-            playerStateMachinView.SwitchState(playerStateMachinView.RunningState);
+            view.SwitchState(view.RunningState);
         }
     }
 }

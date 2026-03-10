@@ -9,11 +9,13 @@ public class PlayerStateMachineView : MonoBehaviour
     public ChangeLaneState ChangeLaneState => _changeLaneState;
     public JumpState JumpState => _jumpState;
     public SlideState SlideState => _slideState;
+    public PlayerAnimationSystem AnimationSystem => _playerAnimationSystem;
 
     [SerializeField] private PlayerInputSystem _inputSystem;
     [SerializeField] private LaneSystem _laneSystem;
     [SerializeField] private MovementSystem _movementSystem;
     [SerializeField] private PlayerColliisionSystem _playerColliisionSystem;
+    [SerializeField] private PlayerAnimationSystem _playerAnimationSystem;
 
     private PlayerState _currentState;
 
@@ -34,6 +36,10 @@ public class PlayerStateMachineView : MonoBehaviour
         _inputSystem.RightPerformed += OnRight;
         _inputSystem.JumpPerformed += OnJump;
         _inputSystem.SlidePerformed += OnSlide;
+
+        _playerAnimationSystem.OnExitJump += OnAnimationFinished;
+        _playerAnimationSystem.OnExitSlide += OnAnimationFinished;
+
     }
 
     private void OnDisable()
@@ -42,12 +48,35 @@ public class PlayerStateMachineView : MonoBehaviour
         _inputSystem.RightPerformed -= OnRight;
         _inputSystem.JumpPerformed -= OnJump;
         _inputSystem.SlidePerformed -= OnSlide;
+
+        _playerAnimationSystem.OnExitJump -= OnAnimationFinished;
+        _playerAnimationSystem.OnExitSlide -= OnAnimationFinished;
     }
 
-    private void OnLeft() => _currentState.OnLeft(this);
-    private void OnRight() => _currentState.OnRight(this);
-    private void OnJump() => _currentState.OnJump(this);
-    private void OnSlide() => _currentState.OnSlide(this);
+    private void OnAnimationFinished()
+    {
+        _currentState.OnAnimationFinished(this);
+    }
+
+    private void OnLeft()
+    {
+        _currentState.OnLeft(this);
+    }
+
+    private void OnRight()
+    {
+        _currentState.OnRight(this);
+    }
+
+    private void OnJump()
+    {
+        _currentState.OnJump(this);
+    }
+
+    private void OnSlide()
+    {
+        _currentState.OnSlide(this);
+    }
 
     private void Update()
     {

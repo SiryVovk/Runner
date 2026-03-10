@@ -4,42 +4,40 @@ public class JumpState : PlayerState
 {
     private bool _laneChangedInAir = false;
 
-    private const int LeftLaneChange = -1;
-    private const int RightLaneChange = 1;
-
-    public override void EnterState(PlayerStateMachineView playerStateMachineView)
+    public override void EnterState(PlayerStateMachineView view)
     {
         _laneChangedInAir = false;
+        view.PlayerColliisionSystem.SetJumping(true);
+        view.AnimationSystem.TriggerJump();
     }
 
-    public override void UpdateState(PlayerStateMachineView playerStateMachineView)
+    public override void ExitState(PlayerStateMachineView view)
     {
-        if (!playerStateMachineView.PlayerColliisionSystem.IsJumping)
-        {
-            playerStateMachineView.SwitchState(playerStateMachineView.RunningState);
-        }
+        view.PlayerColliisionSystem.SetJumping(false);
     }
 
-    public override void ExitState(PlayerStateMachineView playerStateMachineView) { }
+    public override void UpdateState(PlayerStateMachineView view) { }
 
-    public override void OnLeft(PlayerStateMachineView playerStateMachineView)
+    public override void OnLeft(PlayerStateMachineView view)
     {
-        TryChangeLaneInAir(playerStateMachineView, LeftLaneChange);
+        TryChangeLaneInAir(view, LeftLaneChange);
     }
 
-    public override void OnRight(PlayerStateMachineView playerStateMachineView)
+    public override void OnRight(PlayerStateMachineView view)
     {
-        TryChangeLaneInAir(playerStateMachineView, RightLaneChange);
+        TryChangeLaneInAir(view, RightLaneChange);
     }
 
-    private void TryChangeLaneInAir(PlayerStateMachineView playerStateMachineView, int direction)
+    public override void OnAnimationFinished(PlayerStateMachineView view)
     {
-        if (_laneChangedInAir)
-        {
-            return;
-        }
+        view.SwitchState(view.RunningState);
+    }
 
-        if (playerStateMachineView.LaneSystem.TryMove(direction))
+    private void TryChangeLaneInAir(PlayerStateMachineView view, int direction)
+    {
+        if (_laneChangedInAir) return;
+
+        if (view.LaneSystem.TryMove(direction))
         {
             _laneChangedInAir = true;
         }
