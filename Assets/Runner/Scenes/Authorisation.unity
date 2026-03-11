@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.1588745
       objectReference: {fileID: 0}
+    - target: {fileID: 1058702865218122147, guid: d4d07a499ae63904dbf7110835791393, type: 3}
+      propertyPath: m_text
+      value: 'Email:'
+      objectReference: {fileID: 0}
     - target: {fileID: 2969097773224175734, guid: d4d07a499ae63904dbf7110835791393, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1483,7 +1487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1369d91208c761147af54819d8c362e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RegistrationUI
-  _sceneControllSystem: {fileID: 1982501101}
+  _sceneControlSystem: {fileID: 1982501101}
   _databaseSystem: {fileID: 1461947303}
   _emailField: {fileID: 366982756}
   _userNameField: {fileID: 1753450402}
@@ -2735,9 +2739,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1982501099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe01f3f0e3f3e7478360d5b09910dea, type: 3}
+  m_Script: {fileID: 11500000, guid: dbdb91686534c1c448b068544ec5f645, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneControllSystem
+  m_EditorClassIdentifier: Assembly-CSharp::SceneControlSystem
 --- !u!224 &2074940817 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2969097773224175734, guid: d4d07a499ae63904dbf7110835791393, type: 3}

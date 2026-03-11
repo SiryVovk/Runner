@@ -14,14 +14,24 @@ public class PlayerCollisionSystem : MonoBehaviour
 
     private bool _isInvincible = false;
 
-    private void OnEnable() => _gameStateSystem.OnRevive += Revived;
-    private void OnDisable() => _gameStateSystem.OnRevive -= Revived;
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnEnable()
     {
-        if (!enabled || _isInvincible) return;
+        _gameStateSystem.OnRevive += Revived;
+    }
 
-        if (collision.gameObject.TryGetComponent(out ObstacleHolder obstacle))
+    private void OnDisable()
+    {
+        _gameStateSystem.OnRevive -= Revived;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!enabled || _isInvincible)
+        {
+            return;
+        }
+
+        if (other.TryGetComponent(out ObstacleHolder obstacle))
         {
             bool survives = obstacle.ObstacleType switch
             {
@@ -31,7 +41,10 @@ public class PlayerCollisionSystem : MonoBehaviour
                 _ => false
             };
 
-            if (!survives) _gameStateSystem.KillPlayer();
+            if (!survives)
+            {
+                _gameStateSystem.KillPlayer();
+            }
         }
     }
 
