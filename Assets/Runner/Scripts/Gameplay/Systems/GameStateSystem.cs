@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameStateSystem : MonoBehaviour
 {
-    public EGameState CurrentState { get; private set; }
+    public EGameState CurrentState { get; private set; } = EGameState.Dead;
 
     public event Action OnDeath;
     public event Action OnRevive;

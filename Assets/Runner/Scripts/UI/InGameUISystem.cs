@@ -5,7 +5,7 @@ public class InGameUISystem : MonoBehaviour
 {
     [SerializeField] private SignOutSystem _signOutSystem;
 
-    [Header("Screans")]
+    [Header("Screens")]
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private GameObject _gameStartScreen;
     [SerializeField] private GameObject _inGameScreen;
@@ -13,7 +13,7 @@ public class InGameUISystem : MonoBehaviour
 
     [SerializeField] private GameStateSystem _gameStateSystem;
     [SerializeField] private DatabaseSystem _databaseSystem;
-    [SerializeField] private SceneControllSystem _sceneControllSystem;
+    [SerializeField] private SceneControlSystem _sceneControlSystem;
     [SerializeField] private ScoreSystem _scoreSystem;
 
     [SerializeField] private Button _continueButton;
@@ -21,31 +21,33 @@ public class InGameUISystem : MonoBehaviour
     private void Start()
     {
         _gameStateSystem.OnDeath += ShowDeathScreen;
-        AdSystemSinglton.Instance.OnRewardGranted += ContinueAfterAd;
+        AdService.Instance.OnRewardGranted += ContinueAfterAd;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _gameStateSystem.OnDeath -= ShowDeathScreen;
-        AdSystemSinglton.Instance.OnRewardGranted -= ContinueAfterAd;
+        if (AdService.Instance != null)
+        {
+            AdService.Instance.OnRewardGranted -= ContinueAfterAd;
+        }
     }
 
     private void ShowDeathScreen()
     {
         _gameOverScreen.SetActive(true);
-        _continueButton.interactable =
-       AdSystemSinglton.Instance.IsAdReady();
+        _continueButton.interactable = AdService.Instance != null && AdService.Instance.IsAdReady();
     }
 
     public void GoToMainMenu()
     {
         _databaseSystem.UpdateUserScore(_scoreSystem.GetScoreToInt());
-        _sceneControllSystem.ReloadCurrenScenee();
+        _sceneControlSystem.ReloadCurrenScenee();
     }
 
     public void ContinueGame()
     {
-        AdSystemSinglton.Instance.ShowAd();
+        AdService.Instance.ShowAd();
 
     }
 
@@ -64,7 +66,7 @@ public class InGameUISystem : MonoBehaviour
 
     public void Exit()
     {
-        _sceneControllSystem.ExitGame();
+        _sceneControlSystem.ExitGame();
     }
 
     public void LogOut()

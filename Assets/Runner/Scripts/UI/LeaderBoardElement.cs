@@ -8,7 +8,6 @@ public class LeaderboardElement : MonoBehaviour
     [SerializeField] private TMP_Text _usernameText;
     [SerializeField] private TMP_Text _scoreText;
 
-    // Додали int rank
     public void Initialize(int rank, string name, int score, bool isLocalPlayer)
     {
         if (_usernameText != null)

@@ -1,5 +1,4 @@
 using Firebase.Auth;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class LeaderBoardUI : MonoBehaviour
 
     [Header("Other Sting")]
     [SerializeField] private int _numberOfPlayers = 100;
-    [SerializeField] private RectTransform _parantObject;
+    [SerializeField] private RectTransform _parentObject;
     [SerializeField] private TMP_Text _currentPlayerNick;
     [SerializeField] private TMP_Text _currentPlayerScore;
 
@@ -26,7 +25,7 @@ public class LeaderBoardUI : MonoBehaviour
 
     public void RefreshLeaderboard()
     {
-        foreach (Transform child in _parantObject)
+        foreach (Transform child in _parentObject)
         {
             Destroy(child.gameObject);
         }
@@ -47,7 +46,7 @@ public class LeaderBoardUI : MonoBehaviour
                 int rank = i + 1;
                 GameObject prefabToSpawn = GetPrefabByRank(rank);
 
-                GameObject instance = Instantiate(prefabToSpawn, _parantObject);
+                GameObject instance = Instantiate(prefabToSpawn, _parentObject);
 
                 if (instance.TryGetComponent(out LeaderboardElement element))
                 {

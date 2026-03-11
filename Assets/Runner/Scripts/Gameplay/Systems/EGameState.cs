@@ -1,5 +1,5 @@
 public enum EGameState
 {
-    Playing,
-    Dead
+    Playing = 0,
+    Dead = 1
 }

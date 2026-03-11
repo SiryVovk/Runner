@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class MovementSystem : MonoBehaviour
@@ -8,14 +7,9 @@ public class MovementSystem : MonoBehaviour
     [SerializeField] private Transform[] _laneTransforms;
     [SerializeField] private LaneSystem _laneSystem;
 
-    private Rigidbody _rigidbody;
     private Vector3 _targetPosition;
 
-
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+    private const float CenterThreshold = 0.05f;
 
     private void Update()
     {
@@ -40,6 +34,6 @@ public class MovementSystem : MonoBehaviour
         int lane = _laneSystem.LaneModel.CurrentLane;
         float targetX = _laneTransforms[lane].position.x;
 
-        return Mathf.Abs(transform.position.x - targetX) < 0.05f;
+        return Mathf.Abs(transform.position.x - targetX) < CenterThreshold;
     }
 }

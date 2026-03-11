@@ -5,20 +5,19 @@ public class ScoreSystem : MonoBehaviour
     public float CurrentScore { get; private set; }
 
     [SerializeField] private GroundSpeedSystem _groundSpeedSystem;
-    [SerializeField] private float _speedMultiplyer = 0.5f;
-
-    private float _groundSpeed;
-
-    private void Start()
-    {
-        _groundSpeed = _groundSpeedSystem.GroundModel.CurrentSpeed;    
-    }
+    [SerializeField] private GameStateSystem _gameStateSystem;
+    [SerializeField] private float _speedMultiplier = 0.5f;
 
     private void Update()
     {
-        CurrentScore += _groundSpeed * Time.deltaTime * _speedMultiplyer;
+        if (_gameStateSystem.CurrentState != EGameState.Playing)
+        {
+            return;
+        }
 
-        _groundSpeed = _groundSpeedSystem.GroundModel.CurrentSpeed;
+        float currentSpeed = _groundSpeedSystem.GroundModel.CurrentSpeed;
+        CurrentScore += currentSpeed * Time.deltaTime * _speedMultiplier;
+
     }
 
     public int GetScoreToInt()

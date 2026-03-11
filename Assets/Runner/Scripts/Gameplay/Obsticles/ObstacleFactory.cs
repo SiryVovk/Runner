@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class ObstacleFactory : MonoBehaviour
 {
-    [SerializeField] private ObstacleObjectPoll _lanePool;
-    [SerializeField] private ObstacleObjectPoll _jumpPool;
-    [SerializeField] private ObstacleObjectPoll _slidePool;
+    [SerializeField] private ObstacleObjectPool _wallPool;
+    [SerializeField] private ObstacleObjectPool _jumpPool;
+    [SerializeField] private ObstacleObjectPool _slidePool;
 
-    private Dictionary<EObstacleType, ObstacleObjectPoll> _pools;
+    private Dictionary<EObstacleType, ObstacleObjectPool> _pools;
 
     private void Awake()
     {
-        _pools = new Dictionary<EObstacleType, ObstacleObjectPoll>
+        _pools = new Dictionary<EObstacleType, ObstacleObjectPool>
         {
-            {EObstacleType.Wall, _lanePool},
+            {EObstacleType.Wall, _wallPool},
             {EObstacleType.Jump, _jumpPool},
             {EObstacleType.Slide, _slidePool}
         };

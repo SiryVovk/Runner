@@ -6,14 +6,14 @@ public class GroundMovementSystem : MonoBehaviour
     [SerializeField] private List<GroundSegmentView> _groundSegments;
     [SerializeField] private GroundSpeedSystem _groundSpeedSystem;
     [SerializeField] private ObstaclesSpawnSystem _obstaclesSpawnSystem;
-    [SerializeField] private float zTeleportPosition = -15;
+    [SerializeField] private float _zTeleportPosition = -15;
 
-    private const int DirectionMultiplyer = -1;
+    private const int DirectionMultiplier = -1;
 
     private void Update()
     {
         float speed = _groundSpeedSystem.GroundModel.CurrentSpeed;
-        float deltaZPosition = speed * DirectionMultiplyer * Time.deltaTime;
+        float deltaZPosition = speed * DirectionMultiplier * Time.deltaTime;
 
         MoveSegments(deltaZPosition);
         UpdateGroundPosition();
@@ -31,14 +31,15 @@ public class GroundMovementSystem : MonoBehaviour
     {
         GroundSegmentView firstGroundSegment = _groundSegments[0];
 
-        if(firstGroundSegment.transform.position.z < zTeleportPosition)
+        if(firstGroundSegment.transform.position.z < _zTeleportPosition)
         {
             GroundSegmentView lastSegment = _groundSegments[_groundSegments.Count - 1];
 
             Vector3 newPosition = new Vector3(0f,0f,lastSegment.transform.position.z + lastSegment.Length);
             firstGroundSegment.SetPosition(newPosition);
 
-            _obstaclesSpawnSystem.SpawnObsticles(firstGroundSegment);
+            _obstaclesSpawnSystem.SpawnObstacles(firstGroundSegment);
+
             _groundSegments.RemoveAt(0);
             _groundSegments.Add(firstGroundSegment);
         }

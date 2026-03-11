@@ -6,20 +6,21 @@ public class ObstaclesSpawnSystem : MonoBehaviour
 
 
     private const int MaxLanes = 2;
+    private readonly int _obstacleTypesCount = System.Enum.GetValues(typeof(EObstacleType)).Length;
 
-    public void SpawnObsticles(GroundSegmentView segmentView)
+    public void SpawnObstacles(GroundSegmentView segmentView)
     {
-        ClearObsticles(segmentView);
+        ClearObstacles(segmentView);
 
-        foreach (var rows in segmentView.Rows)
+        foreach (var row in segmentView.Rows)
         {
-            Transform[] spawnPoinsInRow = rows.GetAll();
-            CreatObjects(segmentView, spawnPoinsInRow);
+            Transform[] spawnPointsInRow = row.GetAll();
+            CreateObjects(segmentView, spawnPointsInRow);
 
         }
     }
 
-    private void CreatObjects(GroundSegmentView segmentView, Transform[] spawnPoints)
+    private void CreateObjects(GroundSegmentView segmentView, Transform[] spawnPoints)
     {
         int laneCount = 0;
 
@@ -44,7 +45,7 @@ public class ObstaclesSpawnSystem : MonoBehaviour
 
     private EObstacleType GetRandomType(ref int laneCount)
     {
-        EObstacleType type = (EObstacleType)Random.Range(0, System.Enum.GetValues(typeof(EObstacleType)).Length);
+        EObstacleType type = (EObstacleType)Random.Range(0, _obstacleTypesCount);
 
         if (type == EObstacleType.Wall )
         {
@@ -52,7 +53,7 @@ public class ObstaclesSpawnSystem : MonoBehaviour
             {
                 do
                 {
-                    type = (EObstacleType)Random.Range(0, System.Enum.GetValues(typeof(EObstacleType)).Length);
+                    type = (EObstacleType)Random.Range(0, _obstacleTypesCount);
                 }while(type == EObstacleType.Wall);
             }
             else
@@ -64,7 +65,7 @@ public class ObstaclesSpawnSystem : MonoBehaviour
         return type;
     }
 
-    public void ClearObsticles(GroundSegmentView segmentView)
+    public void ClearObstacles(GroundSegmentView segmentView)
     {
         foreach(var obstacle in segmentView.Obstacles)
         {
