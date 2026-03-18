@@ -9,9 +9,12 @@ If the player loses, the game enters a defeat state. At that point, the player c
 The project also supports player authentication and stores leaderboard results through Firebase.
 
 
-<img width="283" height="542" alt="Знімок екрана 2026-03-18 153057" src="https://github.com/user-attachments/assets/8e62cba0-79b4-475b-80aa-764b10ac5e71" />
-<img width="252" height="528" alt="Знімок екрана 2026-03-18 153135" src="https://github.com/user-attachments/assets/696a1cdd-cb7a-4073-8d2b-ca61886e3d00" />
-<img width="431" height="870" alt="Знімок екрана 2026-03-18 153252" src="https://github.com/user-attachments/assets/83599961-ce19-4a61-8664-5ee5c443f512" />
-https://github.com/user-attachments/assets/f23cb55f-c44e-4697-81bf-438b88fd5e74
+Login <img width="283" height="542" alt="Знімок екрана 2026-03-18 153057" src="https://github.com/user-attachments/assets/8e62cba0-79b4-475b-80aa-764b10ac5e71" />
 
-<img width="449" height="867" alt="Знімок екрана 2026-03-18 153535" src="https://github.com/user-attachments/assets/ccb3004c-41d2-4d2c-b88c-5cb2274e74ac" />
+Registration <img width="252" height="528" alt="Знімок екрана 2026-03-18 153135" src="https://github.com/user-attachments/assets/696a1cdd-cb7a-4073-8d2b-ca61886e3d00" />
+
+Main Menu <img width="431" height="870" alt="Знімок екрана 2026-03-18 153252" src="https://github.com/user-attachments/assets/83599961-ce19-4a61-8664-5ee5c443f512" />
+
+Gameplay https://github.com/user-attachments/assets/f23cb55f-c44e-4697-81bf-438b88fd5e74
+
+LeaderBoard <img width="449" height="867" alt="Знімок екрана 2026-03-18 153535" src="https://github.com/user-attachments/assets/ccb3004c-41d2-4d2c-b88c-5cb2274e74ac" />
