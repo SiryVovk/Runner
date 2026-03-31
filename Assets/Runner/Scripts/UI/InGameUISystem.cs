@@ -17,6 +17,7 @@ public class InGameUISystem : MonoBehaviour
     [SerializeField] private ScoreSystem _scoreSystem;
 
     [SerializeField] private Button _continueButton;
+    [SerializeField] private SoundData _sound;
 
     private void Start()
     {
@@ -41,12 +42,14 @@ public class InGameUISystem : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        SFXPool.Instance.CreateSoundBuilder().WithSoundData(_sound).AtPosition(transform.position).Play(this.transform);
         _databaseSystem.UpdateUserScore(_scoreSystem.GetScoreToInt());
         _sceneControlSystem.ReloadCurrenScenee();
     }
 
     public void ContinueGame()
     {
+        SFXPool.Instance.CreateSoundBuilder().WithSoundData(_sound).AtPosition(transform.position).Play(this.transform);
         AdService.Instance.ShowAd();
 
     }
@@ -59,6 +62,7 @@ public class InGameUISystem : MonoBehaviour
 
     public void StartGame()
     {
+        SFXPool.Instance.CreateSoundBuilder().WithSoundData(_sound).AtPosition(transform.position).Play(this.transform);
         _gameStartScreen.SetActive(false);
         _inGameScreen.SetActive(true);
         _gameStateSystem.StartGame();
@@ -66,22 +70,26 @@ public class InGameUISystem : MonoBehaviour
 
     public void Exit()
     {
+        SFXPool.Instance.CreateSoundBuilder().WithSoundData(_sound).AtPosition(transform.position).Play(this.transform);
         _sceneControlSystem.ExitGame();
     }
 
     public void LogOut()
     {
+        SFXPool.Instance.CreateSoundBuilder().WithSoundData(_sound).AtPosition(transform.position).Play(this.transform);
         _signOutSystem.SignOut();
     }
 
     public void ToLeaderBoard()
     {
+        SFXPool.Instance.CreateSoundBuilder().WithSoundData(_sound).AtPosition(transform.position).Play(this.transform);
         _gameStartScreen.SetActive(false);
         _leaderBoardScreen.SetActive(true);
     }
 
     public void BackToMenu()
     {
+        SFXPool.Instance.CreateSoundBuilder().WithSoundData(_sound).AtPosition(transform.position).Play(this.transform);
         _leaderBoardScreen.SetActive(false);
         _gameStartScreen.SetActive(true);
     }
